@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Título</label>
-                <input type="text" name="title" class="form-control" value="{{ old('title') }}"> <!-- old('title') hace que despues de mostrar un error al hacer la validación, el campo de titulo no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
+                <input type="text" name="title" class="form-control" value="{{ old('title') }}"> <!-- old('title') hace que despues de mostrar un error al hacer la validación, el campo de titulo no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a digitarlo -->
             </div>
             <div class="form-group">
                 <label for="description">Descripción</label>
