@@ -6,6 +6,12 @@
     <div class="panel-heading">Usuarios</div>
     <div class="panel-body">
 
+        @if(session('notification'))
+            <div class="alert alert-success">
+                {{ session('notification') }}
+            </div>
+        @endif
+
         @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -31,7 +37,7 @@
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="text" name="password" class="form-control" value="{{ old('password') }}"> <!-- old('password') hace que despues de mostrar un error al hacer la validación, el campo de password no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
+                <input type="text" name="password" class="form-control" value="{{ old('password', str_random(8)) }}"> <!-- old('password') hace que despues de mostrar un error al hacer la validación, el campo de password no quede vacío, sino que le ponga el valor que se ha generado automáticamente de manera aleatoria con 8 caracteres con la funcion str_random o la que el usuario le asigne para que no vuelve a digitarla -->
             </div>
 
             <div class="form-group">
@@ -48,11 +54,12 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($users as $user)
                 <tr>
-                    <td>prueba@gmail.com</td>
-                    <td>Usuario de prueba</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->name }}</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary" title="Editar">
+                        <a href="/usuario/{{ $user->id }}" class="btn btn-sm btn-primary" title="Editar">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                         <a href="#" class="btn btn-sm btn-danger" title="Eliminar">
@@ -60,6 +67,7 @@
                         </a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
 

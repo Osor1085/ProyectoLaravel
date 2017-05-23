@@ -6,6 +6,12 @@
     <div class="panel-heading">Dashboard</div>
     <div class="panel-body">
 
+        @if(session('notification'))
+            <div class="alert alert-success">
+                {{ session('notification') }}
+            </div>
+        @endif
+        
         @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -16,37 +22,52 @@
             </div>
         @endif
 
-        <form action="" method="POST">
+<form action="" method="POST">
         {{ csrf_field() }}
+
             <div class="form-group">
-                <label for="category_id">Categoría</label>
-                <select name="category_id" class="form-control">
-                    <option value="">General</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>                       
+                <label for="email">Email</label>
+                <input type="email" name="email" readonly class="form-control" value="{{ old('email', $user->email) }}"> <!-- old('email') hace que despues de mostrar un error al hacer la validación, el campo de email no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
             </div>
+
             <div class="form-group">
-                <label for="severity">Severidad</label>
-                <select name="severity" class="form-control">
-                    <option value="M">Menor</option>
-                    <option value="N">Normal</option>
-                    <option value="A">Alta</option>
-                </select>
+                <label for="name">Nombre</label>
+                <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}"> <!-- old('name') hace que despues de mostrar un error al hacer la validación, el campo de name no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
             </div>
+
             <div class="form-group">
-                <label for="title">Título</label>
-                <input type="text" name="title" class="form-control" value="{{ old('title') }}"> <!-- old('title') hace que despues de mostrar un error al hacer la validación, el campo de titulo no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
+                <label for="password">Contraseña <em>(Ingresar solo si se desea modificar)</em></label>
+                <input type="text" name="password" class="form-control" value="{{ old('password') }}"> <!-- old('password') hace que despues de mostrar un error al hacer la validación, el campo de password no quede vacío, sino que le ponga el valor que el usuario ha introducio para que no tenga que volver a difitarlo -->
             </div>
+
             <div class="form-group">
-                <label for="description">Descripción</label>
-                <textarea name="description" class="form-control">{{ old('description') }}</textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Registrar incidencia</button>
+                <button class="btn btn-primary">Guardar usuario</button>
             </div>
         </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Proyecto</th>
+                    <th>Nivel</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Proyecto A</td>
+                    <td>N1</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary" title="Editar">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger" title="Eliminar">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
