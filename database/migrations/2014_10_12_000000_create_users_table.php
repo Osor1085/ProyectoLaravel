@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->smallinteger('role')->default(2); // 0:Admin | 1:Support | 2:Client
             $table->rememberToken();
+            $table->softDeletes(); // Agrega la columna deleted_at de la elminiación lógica del user (Trait Softdelete).
             $table->timestamps();
         });
     }
