@@ -17,8 +17,10 @@ class CreateIncidentsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
-            $table->string('description');
-            $table->string('severity', 1); // Solo contendrá un caracter
+            $table->string('description');            
+            $table->string('severity', 1);
+
+            $table->boolean('active')->default(1);
 
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
@@ -28,12 +30,13 @@ class CreateIncidentsTable extends Migration
 
             $table->integer('level_id')->unsigned()->nullable();
             $table->foreign('level_id')->references('id')->on('levels');
-            // Cliente que crea el incidente
+
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('users');
-            // Técnico que atiende el incidente
+
             $table->integer('support_id')->unsigned()->nullable();
-            $table->foreign('support_id')->references('id')->on('users');                          
+            $table->foreign('support_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

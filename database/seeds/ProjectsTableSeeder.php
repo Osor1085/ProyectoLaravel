@@ -20,6 +20,6 @@ class ProjectsTableSeeder extends Seeder
         Project::create([
         	'name' => 'Proyecto B',
         	'description' => 'El proyecto B consiste en desarrollar una aplicación Android.'
-        ]);        
+        ]);
     }
 }

@@ -14,26 +14,18 @@ class UsersTableSeeder extends Seeder
     {
     	// Admin
         User::create([
-        	'name' => 'Walter Izaguirre',
-        	'email' => 'wizaguirrel@gmail.com',
-        	'password' => bcrypt('123456'),
+        	'name' => 'Juan',
+        	'email' => 'juancagb.17@gmail.com',
+        	'password' => bcrypt('123123'),
         	'role' => 0
         ]);
 
-    	// Suppport
+        // Client
         User::create([
-        	'name' => 'Juan Perez',
-        	'email' => 'jperez@gmail.com',
-        	'password' => bcrypt('123456'),
-        	'role' => 1
-        ]);
-
-    	// Client
-        User::create([
-        	'name' => 'María Gomez',
-        	'email' => 'mgomez@gmail.com',
-        	'password' => bcrypt('123456'),
+        	'name' => 'Claudia',
+        	'email' => 'client@gmail.com',
+        	'password' => bcrypt('123123'),
         	'role' => 2
-        ]);             
+        ]);
     }
 }

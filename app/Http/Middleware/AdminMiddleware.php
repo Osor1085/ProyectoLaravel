@@ -15,10 +15,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->check()) // Si el usuario no esta loggeado, lo redirecciona a login
+        if (! auth()->check())
             return redirect('login');
 
-        if(auth()->user()->role != 0) // Si el usuario loggeado no es Admin, se redireccion a home
+        if (auth()->user()->role != 0) // not an admin
             return redirect('home');
 
         return $next($request);
